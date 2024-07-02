@@ -1,16 +1,23 @@
-# 这是一个示例 Python 脚本。
+import tkinter as tk
 
-# 按 Shift+F10 执行或将其替换为您的代码。
-# 按 双击 Shift 在所有地方搜索类、文件、工具窗口、操作和设置。
+from app import VideoDownloaderApp
 
-
-def print_hi(name):
-    # 在下面的代码行中使用断点来调试脚本。
-    print(f'Hi, {name}')  # 按 Ctrl+F8 切换断点。
+# 打包命令示例，安装pyinstaller，路径自己更改
+# pyinstaller -F --paths=C:\Users\14134\.conda\envs\ytdlp\Lib\site-packages --python=C:\Users\14134\.conda\envs\ytdlp\pythonw.exe  --noconsole  --icon=1.ico --name=Downloader DLP_GUI_Perfect.py
 
 
-# 按装订区域中的绿色按钮以运行脚本。
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# 默认参数
+DEFAULT_URL = ''
+DEFAULT_VIDEO_FORMAT = 'bestvideo'
+DEFAULT_AUDIO_FORMAT = 'bestaudio'
+DEFAULT_PATH = r'F:\download'
 
-# 访问 https://www.jetbrains.com/help/pycharm/ 获取 PyCharm 帮助
+
+def main():
+    root = tk.Tk()
+    app = VideoDownloaderApp(root, DEFAULT_URL, DEFAULT_PATH, DEFAULT_VIDEO_FORMAT, DEFAULT_AUDIO_FORMAT)
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()
