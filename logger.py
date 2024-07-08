@@ -2,6 +2,7 @@ import tkinter as tk
 
 
 class MyLogger:
+    """A class used to show log information while downloading."""
     def __init__(self, log):
         self.log = log
 

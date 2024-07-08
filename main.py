@@ -1,10 +1,5 @@
 import tkinter as tk
-
 from app import VideoDownloaderApp
-
-# 打包命令示例，安装pyinstaller，路径自己更改
-# pyinstaller -F --paths=C:\Users\14134\.conda\envs\ytdlp\Lib\site-packages --python=C:\Users\14134\.conda\envs\ytdlp\pythonw.exe  --noconsole  --icon=1.ico --name=Downloader DLP_GUI_Perfect.py
-
 
 # 默认参数
 DEFAULT_URL = ''
