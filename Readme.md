@@ -12,16 +12,28 @@ yt-dlp基本支持所有常见的视频网站，它是一个功能十分强大�
 
 # 开发环境
 
+## Windows（默认）
+
+默认使用Windows环境，我使用 pycharm+Anaconda:
+
 - python>=3.8
 - ffmpeg，用于下载后自动合并音频和视频，注意是ffmpeg的二进制可执行文件，而不是python库，记得添加到环境变量，如：`D:\ffmpeg\bin`
 
-（1）为项目新建conda虚拟环境，示例：
+
+
+（1）克隆本项目
+
+```bash
+git clone git@github.com:CQUPTLei/VideoDownloader.git
+```
+
+（2）为项目新建conda虚拟环境，示例：
 
 ```bash
 conda create -n videodownload  python=3.12 
 ```
 
-（2）使用pip安装yt_dlp库：
+（3）使用pip安装yt_dlp库：
 
 ```bash
 conda activate videodownload
@@ -29,6 +41,52 @@ pip install yt-dlp
 ```
 
 
+
+## Linux
+
+Linux下，以Ubuntu24.04为例，使用vim编辑，pyhon venv虚拟环境（你使用conda也可以）：
+
+（1）安装python venv
+
+```bash
+apt install python3.12-venv
+```
+
+（2）创建虚拟环境
+
+```bash
+python3 -m venv downloader
+```
+
+（3）激活虚拟环境
+
+```bash
+source downloader/bin/activate
+```
+
+（4）安装相关库
+
+```bash
+pip install yt-dlp
+sudo apt install python3-tk
+pip install prettytable
+# 打包用
+pip install pyinstaller
+```
+
+（5）给main.py可执行权限
+
+```bash
+sudo chmod 775 main.py
+```
+
+（6）执行(注意路径)
+
+```bash
+python3 main.py
+```
+
+> 可能的修改：如果使用了从浏览器获取cookies文件，可能需要修改路径，默认保存位置可能需要修改。
 
 # 构建可执行程序
 
@@ -40,15 +98,19 @@ pip install yt-dlp
 pip install pyinstaller
 ```
 
-打包命令示例，路径自己更改
+打包命令示例，注意各个路径，下面的代码是在main.py所在目录执行的：
 
-```python
-# pyinstaller -F --paths=C:\Users\14134\.conda\envs\ytdlp\Lib\site-packages --python=C:\Users\14134\.conda\envs\ytdlp\pythonw.exe  --noconsole  --icon=1.ico --name=Downloader DLP_GUI_Perfect.py
+```bash
+pyinstaller -F --paths=D:\anaconda\envs\videodownload\Lib\site-packages  --python=D:\anaconda\envs\videodownload\pythonw.exe  --noconsole  --icon=icon\1.ico --name=Downloader main.py
 ```
 
 **Ubuntu:**
 
+一个简单示例：
 
+```
+pyinstaller -F --paths=/home/moon/VideoDownloader/downloader/lib/python3.12/site-packages  --python=/home/moon/VideoDownloader/downloader/bin/python312  --noconsole  --icon=icon\1.ico --name=Downloader main.py
+```
 
 **MacOS:**
 
