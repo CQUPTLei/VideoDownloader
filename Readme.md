@@ -1,32 +1,65 @@
-<img src="E:\VideoDownloader\icon\dlp.png" style="zoom:10%;" />
-
-
-
 # 项目简介
 
-## yt-dlp
+VideoDownloader是一个基于`yt-dlp`的python库开发的视频下载程序。
 
-Python 3.8 
+<img src="C:\Users\14134\AppData\Roaming\Typora\typora-user-images\image-20240711005844300.png" alt="image-20240711005844300" style="zoom:70%;" />
 
-ffmpeg你需要的是 ffmpeg*二进制文件*，**而不是** [同名的 Python 包](https://pypi.org/project/ffmpeg)
+[yt-dlp](https://github.com/yt-dlp/yt-dlp) 是一款功能丰富的**命令行**音频/视频下载器，支持数千个网站。该项目是基于现已停用的 youtube-dlc 的 youtube-dl 的一个分支。
+
+yt-dlp基本支持所有常见的视频网站，它是一个功能十分强大、参数十分丰富的命令行程序。本项目基于yt-dlp的python库（yt_dlp）进行开发，使用tkinter库构建了用于视频下载的GUI应用程序，免去了在命令行输入冗长的命令的过程，带给您一个轻松的下载体验。
 
 
-# 环境（使用anaconda）
-1. 为项目新建conda虚拟环境,示例：conda create -n videodownload  python=3.12 
-2. yt-dlp可能需要使用pip安装，进入虚拟环境：conda activate videodownload；使用pip而不是
-conda安装：pip install yt-dlp
 
-# 使用
+# 开发环境
 
-打包
+- python>=3.8
+- ffmpeg，用于下载后自动合并音频和视频，注意是ffmpeg的二进制可执行文件，而不是python库，记得添加到环境变量，如：`D:\ffmpeg\bin`
 
-```python
-# 打包命令示例，安装pyinstaller，路径自己更改
-# pyinstaller -F --paths=C:\Users\14134\.conda\envs\ytdlp\Lib\site-packages --python=C:\Users\14134\.conda\envs\ytdlp\pythonw.exe  --noconsole  --icon=1.ico --name=Downloader DLP_GUI_Perfect.py
+（1）为项目新建conda虚拟环境，示例：
+
+```bash
+conda create -n videodownload  python=3.12 
+```
+
+（2）使用pip安装yt_dlp库：
+
+```bash
+conda activate videodownload
+pip install yt-dlp
 ```
 
 
-# 其他
+
+# 构建可执行程序
+
+**Windows：**
+
+安装pyinstaller库：
+
+```bash
+pip install pyinstaller
+```
+
+打包命令示例，路径自己更改
+
+```python
+# pyinstaller -F --paths=C:\Users\14134\.conda\envs\ytdlp\Lib\site-packages --python=C:\Users\14134\.conda\envs\ytdlp\pythonw.exe  --noconsole  --icon=1.ico --name=Downloader DLP_GUI_Perfect.py
+```
+
+**Ubuntu:**
+
+
+
+**MacOS:**
+
+
+
+# 改进方向
+
+- [ ] 添加对视频列表的处理和下载；
+- [ ] 同时进行多个下载任务；
+- [ ] 支持更多的自定义参数；
+- [ ] ...
 
 
 
@@ -34,13 +67,11 @@ conda安装：pip install yt-dlp
 
 # 下载参数
 
+yt_dlp在pypi上没有专门的参考手册，github和pypi上都写得的yt-dlp命令行程序的可用参数，但你可以阅读yt_dlp的具体实现：`YoutubeDL.py`来获取可用参数和含义。
+
+以下主要是`yt_dlp.YoutubeDL(download_opts)`方法支持的参数。
+
 ## 原文
-
-```
-yt_dlp.YoutubeDL(download_opts)
-```
-
-
 
 ```python
     YoutubeDL objects accept a lot of parameters. In order not to saturate
@@ -418,13 +449,9 @@ yt_dlp.YoutubeDL(download_opts)
     no_overwrites:     Same as `overwrites=False`
 ```
 
-## 翻译
+## 简要翻译
 
-以下是整理后的参数表格，详细描述了 `yt_dlp` 模块中可用的各种参数及其作用：
-
-
-
-以下是关于YoutubeDL对象可接受的参数的整理表格：
+阅读原文获取完整参数的完整介绍，要特别注意参数的类型，比如是元组还是字符串。
 
 | 参数名                       | 描述                                                         |
 | ---------------------------- | ------------------------------------------------------------ |
@@ -551,7 +578,7 @@ yt_dlp.YoutubeDL(download_opts)
 | `noprogress`             | 不打印进度条。                                               |
 | live_from_start          | 是否从直播开始下载视频。                                     |
 
-**表格1: 下载器相关参数**
+**下载器相关参数**
 
 | 参数                          | 描述                            |
 | ----------------------------- | ------------------------------- |
@@ -575,14 +602,14 @@ yt_dlp.YoutubeDL(download_opts)
 | concurrent_fragment_downloads | 并发下载片段数。                |
 | progress_delta                | 下载进度的间隔。                |
 
-**表格2: 后处理器相关参数**
+**后处理器相关参数**
 
 | 参数               | 描述                                       |
 | ------------------ | ------------------------------------------ |
 | ffmpeg_location    | ffmpeg/avconv 二进制文件的位置。           |
 | postprocessor_args | 后处理器或执行程序的额外命令行参数的字典。 |
 
-**表格3: 提取器相关参数**
+**提取器相关参数**
 
 | 参数                    | 描述                                                      |
 | ----------------------- | --------------------------------------------------------- |
@@ -592,7 +619,7 @@ yt_dlp.YoutubeDL(download_opts)
 | extractor_args          | 传递给提取器的参数字典。                                  |
 | mark_watched            | 标记视频为已观看状态（即使使用 --simulate）。             |
 
-**表格4: 已废弃参数**
+**已废弃参数**
 
 | 参数                          | 替代方案或说明                                               |
 | ----------------------------- | ------------------------------------------------------------ |
