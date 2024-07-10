@@ -44,27 +44,33 @@ pip install yt-dlp
 
 ## Linux
 
-Linux下，以Ubuntu24.04为例，使用vim编辑，pyhon venv虚拟环境（你使用conda也可以）：
+Linux下，以Ubuntu24.04为例，使用vim编辑，python venv虚拟环境（你使用conda也可以）：
 
-（1）安装python venv
+（1）克隆项目到本地
+
+```bash
+git clone git@github.com:CQUPTLei/VideoDownloader.git
+```
+
+（2）安装python venv
 
 ```bash
 apt install python3.12-venv
 ```
 
-（2）创建虚拟环境
+（3）创建虚拟环境
 
 ```bash
 python3 -m venv downloader
 ```
 
-（3）激活虚拟环境
+（4）激活虚拟环境
 
 ```bash
 source downloader/bin/activate
 ```
 
-（4）安装相关库
+（5）安装相关库
 
 ```bash
 pip install yt-dlp
@@ -74,13 +80,13 @@ pip install prettytable
 pip install pyinstaller
 ```
 
-（5）给main.py可执行权限
+（6）给main.py可执行权限
 
 ```bash
 sudo chmod 775 main.py
 ```
 
-（6）执行(注意路径)
+（7）执行(注意路径)
 
 ```bash
 python3 main.py
