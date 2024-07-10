@@ -1,9 +1,9 @@
 # -*- coding = utf-8 -*-
 # @TIME : 2024/07/08 18:30
 # @Author : Grace
-# @File : test.py
+# @File : get_video_info.py
 # @Software : PyCharm
-# content： 获取视频格式等相关信息
+# Overview： Get video format and other related information.
 
 import yt_dlp
 from prettytable import PrettyTable
@@ -11,7 +11,7 @@ import math
 
 
 def convert_bytes(size_bytes):
-    # 将文件大小转换为更适合阅读的单位
+    """将文件大小转换为更适合阅读的单位"""
     if size_bytes is None:
         return "Unknown"
     elif size_bytes == 0:
@@ -38,7 +38,6 @@ def get_video_formats(url):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info_dict = ydl.extract_info(url, download=False)
         formats = info_dict.get('formats', [])
-        print(formats)
 
         # 创建表格
         table = PrettyTable()

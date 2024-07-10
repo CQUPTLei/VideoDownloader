@@ -3,7 +3,7 @@
 # @Author : Grace
 # @File : app.py
 # @Software : PyCharm
-# Overview： The main implementation part of the program(fixed windows size).
+# Overview： The main implementation part of the program(flexible windows size).
 
 import threading
 import yt_dlp
@@ -24,7 +24,7 @@ class VideoDownloaderApp:
         """
         self.log = None
         self.root = root
-        self.root.title('视频下载程序')
+        self.root.title('VideoDownloader')
         self.window_set(900, 500)
         # 初始化下载参数
         self.url = tk.StringVar(value=url)
@@ -48,65 +48,71 @@ class VideoDownloaderApp:
         self.root.update()
 
     def create_ui(self):
-        """Main page of the App(fixed window size)."""
+        """Main page of the App(flexible window size)."""
         # 输入视频URL
-        url_label = tk.Label(self.root, text='输入视频URL', font=("Roboto", 12))
-        url_label.place(x=10, y=10)
+        url_label = tk.Label(self.root, text='Video URL', font=("Roboto", 12))
+        url_label.grid(row=0, column=0, padx=0, pady=10, sticky="nsew")
 
         url_entry = tk.Entry(self.root, textvariable=self.url, bg='#FAFAD2')
-        url_entry.place(x=110, y=5, width=600, height=40)
+        url_entry.grid(row=0, column=1, padx=0, pady=10, sticky="nsew", columnspan=4)
 
-        url_button = tk.Button(self.root, text='确定', bg='#FFE4C4', command=self.url_input)
-        url_button.place(x=710, y=5, width=90, height=40)
+        url_button = tk.Button(self.root, text='Confirm', bg='#FFE4C4', command=self.url_input)
+        url_button.grid(row=0, column=5, padx=0, pady=10, sticky="nsew")
 
-        # 获取视频信息按钮
-        info_button = tk.Button(self.root, text='获取视频信息', bg='#FFD39B', command=self.print_info)
-        info_button.place(x=800, y=5, width=90, height=40)
+        info_button = tk.Button(self.root, text='Get video info', bg='#FFD39B', command=self.print_info)
+        info_button.grid(row=0, column=6, padx=10, pady=10, sticky="nsew")
 
-        # 选择保存路径
-        path_label = tk.Label(self.root, text='视频保存路径', font=("Roboto", 12))
-        path_label.place(x=10, y=60)
+        # 选择保存路径部分
+        path_label = tk.Label(self.root, text='Saved path', font=("Roboto", 12))
+        path_label.grid(row=1, column=0, padx=0, pady=0, sticky="nsew")
 
         path_entry = tk.Entry(self.root, textvariable=self.path, bg='#00CD66', font=('FangSong', 10), state='readonly')
-        path_entry.place(x=110, y=55, width=600, height=40)
+        path_entry.grid(row=1, column=1, padx=0, pady=0, sticky="nsew", columnspan=4)
 
-        path_button = tk.Button(self.root, text='选择路径', bg='#C1CDC1', command=self.select_path)
-        path_button.place(x=710, y=55, width=180, height=40)
+        path_button = tk.Button(self.root, text='Select the path to save the video', bg='#C1CDC1',
+                                command=self.select_path)
+        path_button.grid(row=1, column=5, padx=10, pady=0, sticky="nsew", columnspan=2)
 
-        # 自定义选择音视频质量
-        format_label = tk.Label(self.root, text='自定义格式', font=("Roboto", 12))
-        format_label.place(x=10, y=110)
+        # 自定义选择音视频质量部分
+        format_label = tk.Label(self.root, text='Custom Format', font=("Roboto", 12))
+        format_label.grid(row=2, column=0, padx=0, pady=10, sticky="nsew")
 
-        video_label = tk.Label(self.root, text='视频', bg='#EEAD0E', font=("Roboto", 12))
-        video_label.place(x=110, y=110, width=50, height=40)
+        video_label = tk.Label(self.root, text='Video', bg='#EEAD0E', font=("Roboto", 12))
+        video_label.grid(row=2, column=1, padx=0, pady=10, sticky="nsew")
 
         video_entry = tk.Entry(self.root, textvariable=self.video_format, bg='#E6E6FA')
-        video_entry.place(x=160, y=110, width=250, height=40)
+        video_entry.grid(row=2, column=2, padx=0, pady=10, sticky="nsew")
 
-        audio_label = tk.Label(self.root, text='音频', bg='#9932CC', font=("Roboto", 12))
-        audio_label.place(x=410, y=110, width=50, height=40)
+        audio_label = tk.Label(self.root, text='Audio', bg='#9932CC', font=("Roboto", 12))
+        audio_label.grid(row=2, column=3, padx=0, pady=10, sticky="nsew")
 
         audio_entry = tk.Entry(self.root, textvariable=self.audio_format, bg='#E6E6FA')
-        audio_entry.place(x=460, y=110, width=250, height=40)
+        audio_entry.grid(row=2, column=4, padx=0, pady=10, sticky="nsew")
 
-        format_button = tk.Button(self.root, text='确定', bg='#EEB4B4', command=self.select_format)
-        format_button.place(x=710, y=110, width=90, height=40)
+        format_button = tk.Button(self.root, text='Confirm', bg='#EEB4B4', command=self.select_format)
+        format_button.grid(row=2, column=5, padx=0, pady=10, sticky="nsew")
 
-        dl_button = tk.Button(self.root, text='开始下载', bg='#00FF00', font=('楷体', 14),
+        dl_button = tk.Button(self.root, text='Start  download', bg='#008B00', font=('Impact', 13),
                               command=self.start_download)
-        dl_button.place(x=800, y=110, width=90, height=40)
+        dl_button.grid(row=2, column=6, padx=10, pady=10, sticky="nsew")
 
         dl_txt = tk.Label(self.root,
-                          text='输入URL后必须点击确定，可以不指定音视频质量(获取视频信息后的ID)，默认下载最高质量音视频，由ffmpeg自动合并',
-                          font=('FangSong', 12), bg='#FFFFF0')
-        dl_txt.place(x=10, y=155, width=880, height=40)
+                          text='Enter the URL and click OK. The highest quality audio and video will be downloaded and merged by ffmpeg by default.',
+                          font=('FangSong', 8), bg='#FFFFF0')
+        dl_txt.grid(row=3, column=0, padx=10, pady=0, sticky="ew", columnspan=7)
 
         # 日志输出框
         self.log = tk.Text(self.root, bg='black', fg='#00CD00', wrap='word')
-        self.log.place(x=10, y=200, width=880, height=290)
+        self.log.grid(row=4, column=0, columnspan=7, padx=10, pady=5, sticky="nsew")
         self.log.insert(tk.END,
                         '     -----------------------------------------Hello，welcome to video downloader'
                         '-----------------------------------------\n')
+
+        # 设置网格布局自动调整
+        for i in range(5):
+            self.root.grid_rowconfigure(i, weight=1)
+        for i in range(7):
+            self.root.grid_columnconfigure(i, weight=1)
 
     # 视频地址输入
     def url_input(self):

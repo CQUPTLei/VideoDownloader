@@ -1,10 +1,22 @@
-import tkinter as tk
-from app import VideoDownloaderApp
+# -*- coding = utf-8 -*-
+# @TIME : 2024/07/08 18:30
+# @Author : Grace
+# @File : main.py
+# @Software : PyCharm
+# Overview：Video download app with yt_dlp.
 
-# 默认参数
+import tkinter as tk
+# fixed window size
+from app import VideoDownloaderApp
+# Flexible window size
+# from app_flexible_windows import VideoDownloaderApp
+
 DEFAULT_URL = ''
+# Default video format code
 DEFAULT_VIDEO_FORMAT = 'bestvideo'
+# Default audio format code
 DEFAULT_AUDIO_FORMAT = 'bestaudio'
+# Default video save path
 DEFAULT_PATH = r'F:\download'
 
 
