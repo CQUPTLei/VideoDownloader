@@ -2,7 +2,7 @@
 
 VideoDownloader是一个基于`yt-dlp`的python库开发的视频下载程序。
 
-<img src="C:\Users\14134\AppData\Roaming\Typora\typora-user-images\image-20240711005844300.png" alt="image-20240711005844300" style="zoom:70%;" />
+<img src="icon/cut.png" alt="image" style="zoom:70%;" />
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp) 是一款功能丰富的**命令行**音频/视频下载器，支持数千个网站。该项目是基于现已停用的 youtube-dlc 的 youtube-dl 的一个分支。
 
