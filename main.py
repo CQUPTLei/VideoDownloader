@@ -9,7 +9,7 @@ import tkinter as tk
 # fixed window size
 from app import VideoDownloaderApp
 # Flexible window size
-# from app_flexible_windows import VideoDownloaderApp
+# from app_flexible_window import VideoDownloaderApp
 
 DEFAULT_URL = ''
 # Default video format code
