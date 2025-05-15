@@ -32,7 +32,9 @@ def get_video_formats(url):
     """
     ydl_opts = {
         'quiet': True,  # 静音模式，只显示我们需要的信息
-        'cookiesfrombrowser': ('edge', ),
+        # TODO:edge和chrome不行了，要么导出cookies，要么使用firefox
+        # https://github.com/yt-dlp/yt-dlp/issues/10927
+        'cookiesfrombrowser': ('firefox', ),
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:

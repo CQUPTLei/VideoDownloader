@@ -182,7 +182,7 @@ class VideoDownloaderApp:
                 # 视频保存路径
                 'paths': {'home': self.path.get()},
                 # 获取浏览器cookies，你登录相应视频网站的浏览器，你要有VIP，浏览器完全关闭
-                'cookiesfrombrowser': ('edge', ),
+                # 'cookiesfrombrowser': ('edge', ),
                 # 已知错误重试次数
                 'extractor_retries': 10,
                 # 不打印警告
